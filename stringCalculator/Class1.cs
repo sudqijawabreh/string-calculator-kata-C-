@@ -13,7 +13,18 @@ namespace stringCalculator
             if (String.IsNullOrEmpty(input))
                 return 0;
             else
-                return Int32.Parse(input);
+            {
+                var stringNumbers = input.Split(',');
+                if (stringNumbers.Length == 1)
+                    return int.Parse(stringNumbers[0]);
+                else
+                {
+                    int first = int.Parse(stringNumbers[0]);
+                    int second = int.Parse(stringNumbers[1]);
+                    return first + second;
+                }
+
+            }
         }
     }
 }

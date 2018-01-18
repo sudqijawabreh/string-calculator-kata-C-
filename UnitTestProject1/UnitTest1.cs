@@ -18,5 +18,11 @@ namespace UnitTestProject1
             int resutl = Calculator.add("1");
             Assert.AreEqual(1, resutl);
         }
+        [TestMethod]
+        public void add_two_number_comma_seperated_returnSum()
+        {
+            int result = Calculator.add("1,2");
+            Assert.AreEqual(3, result);
+        }
     }
 }
