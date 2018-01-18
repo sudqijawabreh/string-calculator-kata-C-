@@ -22,7 +22,7 @@ namespace stringCalculator
                     input = input.Substring(4);
                 }
                 string[] stringNumbers = split(input, delimiter);
-                sum=sumNumbers(stringNumbers);
+                sum=sumLinq(stringNumbers);
             }
             return sum;
         }
@@ -54,7 +54,22 @@ namespace stringCalculator
             
             return sum;
         }
+        public static int sumLinq(string [] input)
+        {
+            var intValues = input.Select(n => int.Parse(n));
+            var negatives = intValues.Where(n => n < 0);
+            StringBuilder builder = new StringBuilder("negatives not allowed: ");
+            if (negatives.Count() > 0)
+            {
+                var error=negatives.Select(n => n.ToString()).Aggregate((a, b) => a + ',' + b);
+                throw new ArgumentException(error);
+            }
+            var sum=intValues.Except(negatives).Where(c => c < 1000).Sum();
+            return sum;
+                
 
+
+        }
         public static string[] split(string input, char delimiter)
         {
             var delimiters = new char[] { ',', '\n', delimiter };
