@@ -15,7 +15,7 @@ namespace stringCalculator
                 sum = 0;
             else
             {
-                var stringNumbers = input.Split(',');
+                var stringNumbers = input.Split(new char []{ ',','\n'});
                 foreach (var number in stringNumbers)
                     sum += int.Parse(number);
             }

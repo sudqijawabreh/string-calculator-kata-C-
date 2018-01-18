@@ -31,5 +31,12 @@ namespace UnitTestProject1
             Assert.AreEqual(20 + 42 + 35 + 60, result);
 
         }
+        [TestMethod]
+        public void add_numbers_separated_with_newline()
+        {
+            int result = Calculator.add("20\n30,40");
+            Assert.AreEqual(90, result);
+
+        }
     }
 }
