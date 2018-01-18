@@ -12,5 +12,11 @@ namespace UnitTestProject1
             int result = Calculator.add("");
             Assert.AreEqual(0, result);
         }
+        [TestMethod]
+        public void add_oneNumber_return_it()
+        {
+            int resutl = Calculator.add("1");
+            Assert.AreEqual(1, resutl);
+        }
     }
 }

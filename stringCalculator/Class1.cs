@@ -10,7 +10,10 @@ namespace stringCalculator
     {
         public static int add(string input)
         {
-            return 0;
+            if (String.IsNullOrEmpty(input))
+                return 0;
+            else
+                return Int32.Parse(input);
         }
     }
 }
