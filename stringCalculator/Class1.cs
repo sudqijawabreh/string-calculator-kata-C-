@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace stringCalculator
 {
-   public string [] 
     public class Calculator
     {
         public static int add(string input)
@@ -23,7 +22,7 @@ namespace stringCalculator
             return sum;
         }
 
-        private static string[] split(string input)
+        public static string[] split(string input)
         {
             return input.Split(new char[] { ',', '\n' });
         }
