@@ -15,8 +15,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void add_oneNumber_return_it()
         {
-            int resutl = Calculator.add("1");
-            Assert.AreEqual(1, resutl);
+            int result = Calculator.add("1");
+            Assert.AreEqual(1, result);
         }
         [TestMethod]
         public void add_two_number_comma_seperated_returnSum()
@@ -58,6 +58,12 @@ namespace UnitTestProject1
 
             Calculator.add("//,\n-1,-2,3");
 
+        }
+        [TestMethod]
+        public void add_ignores_numbers_greater_than_1000()
+        {
+            int result=Calculator.add("//;\n20;30;40;1001");
+            Assert.AreEqual(90,result);
         }
     }
 }
