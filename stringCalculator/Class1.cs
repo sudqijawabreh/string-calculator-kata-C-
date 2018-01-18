@@ -16,23 +16,41 @@ namespace stringCalculator
             else
             {
                 var delimiter = ";";
+                List<string> delimiters = new List<string>( input.Length);
+                delimiters.Add(",");
+                delimiters.Add("\n");
                 if (input.StartsWith("//"))
                 {
-                    var firstBracketIndex = input.IndexOf('[');
-                    var secondBracketIndex=input.IndexOf(']');
-                    if (firstBracketIndex != -1 && secondBracketIndex != -1)
+                    var firstBracketIndex = 0;
+                    var secondBracketIndex=0;
+                    while(firstBracketIndex != -1)
                     {
-                        delimiter = input.Substring(firstBracketIndex + 1, secondBracketIndex - firstBracketIndex - 1);
+                        firstBracketIndex = input.IndexOf('[', firstBracketIndex+1);
+                        if (firstBracketIndex != -1)
+                        {
+                            secondBracketIndex = input.IndexOf(']', firstBracketIndex);
+                        delimiters.Add(input.Substring(firstBracketIndex + 1, secondBracketIndex - firstBracketIndex - 1));
+                        }
+
+                    }
+
+                    foreach(var item in delimiters)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    if (delimiters.Count>2)
+                    {
                         input = input.Substring(secondBracketIndex + 2);
                     }
                     else
                     {
                         delimiter = input.Substring(2, 1);
+                    delimiters.Add(delimiter);
                         input = input.Substring(4);
                     }
 
                 }
-                string[] stringNumbers = split(input, delimiter);
+                string[] stringNumbers = split(input, delimiters.ToArray());
                 sum=sumLinq(stringNumbers);
             }
             return sum;
@@ -81,9 +99,8 @@ namespace stringCalculator
 
 
         }
-        public static string[] split(string input, string delimiter)
+        public static string[] split(string input, string []delimiters)
         {
-            var delimiters = new string[] { ",", "\n", delimiter };
             return input.Split(delimiters,StringSplitOptions.RemoveEmptyEntries);
         }
     }

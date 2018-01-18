@@ -64,5 +64,12 @@ namespace UnitTestProject1
             int result = Calculator.add("//[**]\n20**30**40");
             Assert.AreEqual(90,result);
         }
+        [TestMethod]
+        public void add_numbers_with_multiple_delimiters_with_anyLength()
+        {
+            int result = Calculator.add("//[**][%]\n20**30%40");
+            Assert.AreEqual(90,result);
+
+        }
     }
 }
