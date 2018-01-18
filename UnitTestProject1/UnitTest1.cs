@@ -45,13 +45,6 @@ namespace UnitTestProject1
             Assert.AreEqual(90, result);
         }
         [TestMethod]
-        public void add_with_no_delimiter_specified_use_defualt()
-        {
-            int result = Calculator.add("//\n\n20\n30\n40");
-            Assert.AreEqual(90, result);
-
-        }
-        [TestMethod]
        [ExpectedException(typeof(ArgumentException),"negatives not allowed: -1")]
         public void add_throws_exception_with_negative_numbers()
         {
