@@ -24,5 +24,12 @@ namespace UnitTestProject1
             int result = Calculator.add("1,2");
             Assert.AreEqual(3, result);
         }
+        [TestMethod]
+        public void add_unkown_amount_numbers()
+        {
+            int result = Calculator.add("20,42,35,60");
+            Assert.AreEqual(20 + 42 + 35 + 60, result);
+
+        }
     }
 }
