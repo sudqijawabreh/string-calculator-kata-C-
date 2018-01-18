@@ -15,11 +15,22 @@ namespace stringCalculator
                 sum = 0;
             else
             {
-                var delimiter = ';';
+                var delimiter = ";";
                 if (input.StartsWith("//"))
                 {
-                    delimiter = input[2];
-                    input = input.Substring(4);
+                    var firstBracketIndex = input.IndexOf('[');
+                    var secondBracketIndex=input.IndexOf(']');
+                    if (firstBracketIndex != -1 && secondBracketIndex != -1)
+                    {
+                        delimiter = input.Substring(firstBracketIndex + 1, secondBracketIndex - firstBracketIndex - 1);
+                        input = input.Substring(secondBracketIndex + 2);
+                    }
+                    else
+                    {
+                        delimiter = input.Substring(2, 1);
+                        input = input.Substring(4);
+                    }
+
                 }
                 string[] stringNumbers = split(input, delimiter);
                 sum=sumLinq(stringNumbers);
@@ -70,10 +81,10 @@ namespace stringCalculator
 
 
         }
-        public static string[] split(string input, char delimiter)
+        public static string[] split(string input, string delimiter)
         {
-            var delimiters = new char[] { ',', '\n', delimiter };
-            return input.Split(delimiters);
+            var delimiters = new string[] { ",", "\n", delimiter };
+            return input.Split(delimiters,StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
