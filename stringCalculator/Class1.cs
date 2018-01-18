@@ -8,5 +8,9 @@ namespace stringCalculator
 {
     public class Calculator
     {
+        public static int add(string input)
+        {
+            return 0;
+        }
     }
 }
