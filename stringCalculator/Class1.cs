@@ -22,23 +22,30 @@ namespace stringCalculator
                     input = input.Substring(4);
                 }
                 string[] stringNumbers = split(input, delimiter);
-                StringBuilder builder = new StringBuilder("negatives not allowed: ",input.Length);
+                sum=sumNumbers(stringNumbers);
+            }
+            return sum;
+        }
+
+        private static int sumNumbers( string[] stringNumbers)
+        {
+            int sum = 0;
+                StringBuilder builder = new StringBuilder("negatives not allowed: ", stringNumbers.Length);
                 Boolean negatives = false;
-                foreach (var number in stringNumbers)
+            foreach (var number in stringNumbers)
+            {
+                int intValue = int.Parse(number);
+                sum += intValue;
+                if (intValue < 0)
                 {
-                    int intValue = int.Parse(number);
-                    sum += intValue;
-                    if (intValue < 0)
-                    {
-                        builder.Append(number + ",");
-                        negatives = true;
-                    }
+                    builder.Append(number + ",");
+                    negatives = true;
                 }
-                if (negatives)
-                {
-                    builder.Remove(builder.Length - 1, 1);
-                    throw new ArgumentException(builder.ToString());
-                }
+            }
+            if (negatives)
+            {
+                builder.Remove(builder.Length - 1, 1);
+                throw new ArgumentException(builder.ToString());
             }
             return sum;
         }
