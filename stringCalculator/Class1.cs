@@ -15,16 +15,23 @@ namespace stringCalculator
                 sum = 0;
             else
             {
-                string[] stringNumbers = split(input);
+               var delimiter =';';
+                if (input.StartsWith("//"))
+                {
+                    delimiter = input[2];
+                    input = input.Substring(4);
+                }
+                var delimiters = new char[]{ ',', '\n' ,delimiter};
+                string[] stringNumbers = split(input,delimiters);
                 foreach (var number in stringNumbers)
                     sum += int.Parse(number);
             }
             return sum;
         }
 
-        public static string[] split(string input)
+        public static string[] split(string input,char [] delimiters)
         {
-            return input.Split(new char[] { ',', '\n' });
+            return input.Split(delimiters);
         }
     }
 }
