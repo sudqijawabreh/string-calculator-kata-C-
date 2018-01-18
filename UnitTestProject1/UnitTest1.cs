@@ -51,5 +51,13 @@ namespace UnitTestProject1
             Assert.AreEqual(90, result);
 
         }
+        [TestMethod]
+       [ExpectedException(typeof(ArgumentException),"negatives not allowed: -1")]
+        public void add_throws_exception_with_negative_numbers()
+        {
+
+            Calculator.add("//,\n-1,-2,3");
+
+        }
     }
 }
